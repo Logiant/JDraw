@@ -12,6 +12,10 @@ public abstract class Shape {
 		color = c;
 	}
 	
+	public void SetColor(Color c) {
+		this.color = c;
+	}
+	
 	public abstract void draw(JCanvas canvas);
 	
 }

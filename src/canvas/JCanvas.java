@@ -18,7 +18,7 @@ public class JCanvas extends JPanel {
 	public BufferedImage canvas;
 	public int width = 50;
 	public int height = 50;
-	
+
 	Timer timer;
 	int delay = 20; //ms between repaints
 
@@ -45,20 +45,20 @@ public class JCanvas extends JPanel {
 	}
 
 	public void floodFill(int x0, int y0, int color) {
-		
+
 		Queue<int[]> q  = new LinkedList<int[]>();
 		int[] pos = {x0, y0};
 		int overwriteColor = canvas.getRGB(x0, y0);
-		
+
 		if (overwriteColor == color) {
 			return;
 		}
-		
+
 		q.add(pos);
 		while(!q.isEmpty()) {
 			pos = q.poll();
 			int x = pos[0]; int y = pos[1];
-			
+
 			for (int dx = -1; dx <= 1; dx++) {
 				for (int dy = -1; dy <= 1; dy++) {
 					if (x+dx >= 0 && x+dx < width && y+dy >= 0 && y+dy < height && 
@@ -71,9 +71,11 @@ public class JCanvas extends JPanel {
 			}			
 		}
 	}
-	
+
 	public void setPixel(int x, int y, Color c) {
-		canvas.setRGB(x, y, c.getRGB());
+		if (x >= 0 && y >= 0 && x < width && y <height) {
+			canvas.setRGB(x, y, c.getRGB());
+		}
 	}
 
 	@Override

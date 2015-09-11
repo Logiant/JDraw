@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import canvas.JCanvas;
 
-public class Point extends Shape {
+public class Point extends Shape implements Comparable<Point> {
 	public int x;
 	public int y;
 	
@@ -20,5 +20,11 @@ public class Point extends Shape {
 	@Override
 	public void draw(JCanvas canvas) {
 		canvas.setPixel(x, y, color);
+	}
+
+	@Override
+	public int compareTo(Point p) {
+		//negative is less, 0 is same, positive is greater
+		return y - p.y;
 	}
 }
