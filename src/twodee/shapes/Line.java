@@ -3,6 +3,7 @@ package twodee.shapes;
 import java.awt.Color;
 
 import canvas.JCanvas;
+import util.Matrix4;
 
 public class Line extends Shape{
 	
@@ -37,8 +38,8 @@ public class Line extends Shape{
 
 	@Override
 	public void draw(JCanvas canvas) {
-		int x0 = points[0].x; int y0 = points[0].y;
-		int x1 = points[1].x; int y1 = points[1].y;
+		int x0 = (int)(points[0].x+0.5); int y0 = (int)(points[0].y+0.5);
+		int x1 = (int)(points[1].x+0.5); int y1 = (int)(points[1].y+0.5);
 		int dx = Math.abs(x1-x0); float dy = Math.abs(y1-y0);
 		
 		if (dx == 0) { //vertical line
@@ -106,5 +107,11 @@ public class Line extends Shape{
 		
 	}
 	
+	@Override
+	public void transform(Matrix4 trans) {
+		for (Point p : points) {
+			p.transform(trans);
+		}
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Arrays;
 
 import canvas.JCanvas;
+import util.Matrix4;
 
 public class Triangle extends Shape{
 
@@ -57,9 +58,9 @@ public class Triangle extends Shape{
 	}
 	
 	private void fillTop(JCanvas canvas, Line l1, Line l2) {
-		int x0 = l1.points[0].x; int y0 = l1.points[0].y; //the highest point
-		int x1 = l1.points[1].x; int y1 = l1.points[1].y; //second highest point
-		int x2 = l2.points[1].x; int y2 = l2.points[1].y; //lowest highest point
+		int x0 = (int)(l1.points[0].x+0.5); int y0 = (int)(l1.points[0].y+0.5); //the highest point
+		int x1 = (int)(l1.points[1].x+0.5); int y1 = (int)(l1.points[1].y+0.5); //second highest point
+		int x2 = (int)(l2.points[1].x+0.5); int y2 = (int)(l2.points[1].y+0.5); //lowest highest point
 		
 		int dy = y1-y0;
 		
@@ -88,9 +89,9 @@ public class Triangle extends Shape{
 	}
 	
 	private void fillBottom(JCanvas canvas, Line l1, Line l2) {
-		int x0 = l1.points[0].x; int y0 = l1.points[0].y; //the highest point
-		int x1 = l1.points[1].x; int y1 = l1.points[1].y; //second highest point
-		int x2 = l2.points[1].x; int y2 = l2.points[1].y; //lowest highest point
+		int x0 = (int)(l1.points[0].x+0.5); int y0 = (int)(l1.points[0].y+0.5); //the highest point
+		int x1 = (int)(l1.points[1].x+0.5); int y1 = (int)(l1.points[1].y+0.5); //second highest point
+		int x2 = (int)(l2.points[1].x+0.5); int y2 = (int)(l2.points[1].y+0.5); //lowest highest point
 		
 		float slope1 = (float)(x2-x1)/(float)(y2-y1); //inverted slope - we are varying X along Y
 		float slope2 = (float)(x2-x0)/(float)(y2-y0); //inverted slope - we are varying X along Y
@@ -115,6 +116,14 @@ public class Triangle extends Shape{
 			xLeft -= leftSlope;
 			xRight -= rightSlope;
 		}
+	}
+
+	@Override
+	public void transform(Matrix4 trans) {
+		for (Point p : points) {
+			p.transform(trans);
+		}
+		System.out.println(points[0].x + ", " + points[0].y);
 	}
 	
 }

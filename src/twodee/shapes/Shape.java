@@ -3,6 +3,7 @@ package twodee.shapes;
 import java.awt.Color;
 
 import canvas.JCanvas;
+import util.Matrix4;
 
 public abstract class Shape {
 
@@ -15,6 +16,8 @@ public abstract class Shape {
 	public void SetColor(Color c) {
 		this.color = c;
 	}
+	
+	public abstract void transform(Matrix4 trans);
 	
 	public abstract void draw(JCanvas canvas);
 	
